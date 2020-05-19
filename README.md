@@ -26,6 +26,7 @@ If your library is not located in a directory like ``~/.stepmania*``, you can pa
 ## Limitations
 
 - Steps are not included, only pre-processed step counts per difficulty.
+- Currently, only .sm files are parsed, not the newer .ssc files.
 
 ## Thanks
 

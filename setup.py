@@ -41,7 +41,7 @@ setup(
     packages=["stepmania_to_sqlite"],
     entry_points="""
         [console_scripts]
-        stepmania-to-sqlite=stepmania_to_sqlite.cli:cli
+        stepmania-to-sqlite=stepmania_to_sqlite.cli:update
     """,
     install_requires=[
         "beautifulsoup4~=4.8",

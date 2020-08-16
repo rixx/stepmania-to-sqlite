@@ -1,12 +1,14 @@
 import hashlib
 import json
+import os
 import subprocess
 from pathlib import Path
 
 import click
 from tqdm import tqdm
 
-DEBUG = True
+DEBUG = False
+IS_WINDOWS = os.name == "nt"
 
 
 class SongException(Exception):
@@ -151,8 +153,10 @@ class Song:
         ]
 
     def get_duration(self):
+        if IS_WINDOWS:
+            return
         data = subprocess.check_output(
-            ["ffprobe", self.song_path], stderr=subprocess.STDOUT
+            ["ffprobe", str(self.song_path)], stderr=subprocess.STDOUT
         ).decode()
         duration_line = [
             line.strip()

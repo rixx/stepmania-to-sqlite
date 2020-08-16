@@ -19,7 +19,7 @@ from stepmania_to_sqlite import utils
 )
 def update(db_path, location):
     db = sqlite_utils.Database(db_path)
-    utils.get_songs(db, changed_only=True, save=True)
+    utils.get_songs(db, changed_only=True, save=True, location=location)
 
 
 update()

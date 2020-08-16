@@ -188,10 +188,19 @@ def get_songs(db, changed_only=True, save=True, location=None):
     if not location:
         files = Path.home().glob(".stepmania*/Songs/**/**/*.sm")
     else:
-        files = Path(location).glob("Songs/**/**/*.sm")
+        location = Path(location)
+        if not location.exists():
+            raise Exception(f"Location {location} does not exist!")
+        files = location.glob("Songs/**/**/*.sm")
+
+    files = list(files)
+    if not len(files):
+        raise Exception(f"No song files found!")
+    else:
+        print(f"Found {len(files)} songs.")
 
     songs = []
-    for path in tqdm(list(files)):
+    for path in tqdm(files):
         song_id = get_song_id(path)
         is_known = known_songs.pop(song_id, None)
         if changed_only and is_known:

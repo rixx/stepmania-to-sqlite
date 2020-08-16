@@ -7,6 +7,9 @@ Put stats about your stepmania library into a SQLite database. Will export all s
 difficulty levels, durations, bpms, etc. Particularly useful if you use the database with
 [datasette](https://datasette.readthedocs.io/).
 
+Please note that under Windows, no song durations will be calculated, and Windows support is generally tenuous. I'm
+happy to merge PRs for this issue (or any other).
+
 ## How to install
 
     $ pip install stepmania-to-sqlite

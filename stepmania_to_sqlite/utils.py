@@ -185,9 +185,13 @@ def get_song_id(path):
 
 def get_songs(db, changed_only=True, save=True, location=None):
     known_songs = {song["id"]: True for song in db["songs"].rows}
+    if not location:
+        files = Path.home().glob(".stepmania*/Songs/**/**/*.sm")
+    else:
+        files = Path(location).glob("Songs/**/**/*.sm")
 
     songs = []
-    for path in tqdm(list(Path.home().glob(".stepmania*/Songs/**/**/*.sm"))):
+    for path in tqdm(list(files)):
         song_id = get_song_id(path)
         is_known = known_songs.pop(song_id, None)
         if changed_only and is_known:
